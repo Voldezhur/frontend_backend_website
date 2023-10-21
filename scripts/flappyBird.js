@@ -4,6 +4,7 @@ let canvasWidth = 600;
 
 let score = 0;
 let scored = false;  // to only add 1 score after passing through a gap
+let gameRunning = false;
 
 let gameCanvas = {
     canvas: document.createElement("canvas"),
@@ -30,7 +31,14 @@ document.addEventListener('keydown', (event) => {
     let code = event.code;
 
     if (code == "Space") {
-        velocity = 5;
+        if (gameRunning == false) {
+            gameRunning = true;
+            startGame();
+        }
+        
+        else {
+            velocity = 5;
+        }
     }
 }, false);
 
@@ -51,6 +59,7 @@ function createPlayer(width, height, x) {
     this.checkIfDead = function() {
         if (this.alive == false) {
             gameCanvas.stop();
+            gameRunning = false;
         }
     }
 
