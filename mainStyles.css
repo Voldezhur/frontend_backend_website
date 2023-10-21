@@ -71,6 +71,7 @@ header input {
     color: white;
 
     height: 20px;
+    width: 10vw;
 }
 
 @media (min-width: 540px) {
@@ -132,6 +133,17 @@ header input {
         width: 300px;
         height: auto; 
     }
+
+    .gameDesc {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    
+        width: 400px;
+    
+        padding-left: 20px;
+        background-color: #212121;
+    }
 }
 
 @media (max-width: 539px) {
@@ -148,17 +160,17 @@ header input {
         width: 150px;
         height: auto; 
     }
-}
 
-.gameDesc {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-
-    width: 400px;
-
-    padding-left: 20px;
-    background-color: #212121;
+    .gameDesc {
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+    
+        width: 200px;
+    
+        padding-left: 20px;
+        background-color: #212121;
+    }
 }
 
 .gameTitle {
