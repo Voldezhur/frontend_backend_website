@@ -5,28 +5,6 @@ body {
     color: white;
 }
 
-header {
-    background-color: #212121;
-    display: flex;
-
-    padding: 20px;
-    height: 100px;
-}
-
-nav button {
-    background-color: #212121;
-    color: white;
-
-    font-size: 20px;
-}
-
-header input {
-    background-color: #212121;
-    color: white;
-
-    height: 20px;
-}
-
 .sectionTitle {
     text-decoration: underline;
     font-weight: bold;
@@ -36,16 +14,12 @@ header input {
 
 /********* Классы в хедере *********/
 
-#profilePicture {
-    height: 50px;
-    width: 50px; 
-    filter: invert(92%) sepia(100%) saturate(1%) hue-rotate(227deg) brightness(105%) contrast(102%);
-}
+header {
+    background-color: #212121;
+    display: flex;
 
-#websiteLogo {
+    padding: 20px;
     height: 100px;
-    width: 100px; 
-    filter: invert(92%) sepia(100%) saturate(1%) hue-rotate(227deg) brightness(105%) contrast(102%);
 }
 
 .titleFlex {
@@ -68,6 +42,8 @@ header input {
 
     margin-left: auto;
     margin-right: 1vw;
+
+    align-self: center;
 }
 
 .profileFlex * {
@@ -90,20 +66,88 @@ header nav {
     margin: auto;
 }
 
-/********* Классы в основном контенте *********/
+header input {
+    background-color: #212121;
+    color: white;
 
-.gameItem {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-
-    gap: 20vw;
-    margin-top: 50px;
+    height: 20px;
 }
 
-.gameImage {
-    width: 300px;
-    height: auto; 
+@media (min-width: 540px) {
+    nav button {
+        background-color: #212121;
+        color: white;
+
+        font-size: 20px;
+    }
+
+    #profilePicture {
+        height: 50px;
+        width: 50px; 
+        filter: invert(92%) sepia(100%) saturate(1%) hue-rotate(227deg) brightness(105%) contrast(102%);
+    }
+    
+    #websiteLogo {
+        height: 100px;
+        width: 100px; 
+        filter: invert(92%) sepia(100%) saturate(1%) hue-rotate(227deg) brightness(105%) contrast(102%);
+    }
+}
+
+@media (max-width: 539px) {
+    nav button {
+        background-color: #212121;
+        color: white;
+
+        font-size: 15px;
+    }
+
+    #profilePicture {
+        height: 25px;
+        width: 25px; 
+        filter: invert(92%) sepia(100%) saturate(1%) hue-rotate(227deg) brightness(105%) contrast(102%);
+    }
+    
+    #websiteLogo {
+        height: 50px;
+        width: 50px; 
+        filter: invert(92%) sepia(100%) saturate(1%) hue-rotate(227deg) brightness(105%) contrast(102%);
+        align-self: center;
+    }
+}
+
+/********* Классы в основном контенте *********/
+
+@media (min-width: 540px) {
+    .gameItem {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    
+        gap: 20vw;
+        margin-top: 50px;
+    }
+    
+    .gameImage {
+        width: 300px;
+        height: auto; 
+    }
+}
+
+@media (max-width: 539px) {
+    .gameItem {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    
+        gap: 20vw;
+        margin-top: 50px;
+    }
+    
+    .gameImage {
+        width: 150px;
+        height: auto; 
+    }
 }
 
 .gameDesc {
