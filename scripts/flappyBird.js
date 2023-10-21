@@ -69,9 +69,11 @@ function createPlayer(width, height, x) {
 // create attack pipe
 let pipe;
 
+let pipeSpeed = 6;
+
 function createPipe() {
     this.x = canvasWidth;
-    this.speed = 4;
+    this.speed = pipeSpeed;
 
     this.gap = 60;  // size of the gap
     this.width = 40;
