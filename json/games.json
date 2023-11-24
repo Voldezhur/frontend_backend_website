@@ -1,0 +1,12 @@
+[
+    {
+        "title": "Сапер",
+        "description": "Нужно убрать все мины, не умерев",
+        "imageLink": "images/minesweeper.png"
+    },
+    {
+        "title": "Flappy Bird",
+        "description": "Нужно пролетать в трубы, не ударяясь о них",
+        "imageLink": "images/flappyBird.jpeg"
+    }   
+]
