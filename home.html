@@ -66,7 +66,7 @@
         </footer>
 
         <script>            
-            let requestURL = "https://github.com/Voldezhur/frontend_backend_website/blob/main/json/games.json";
+            let requestURL = "https://raw.githubusercontent.com/Voldezhur/frontend_backend_website/main/json/games.json";
             let request = new XMLHttpRequest();
             
             request.open('GET', requestURL);
@@ -80,7 +80,7 @@
 
             function showGames(jsonObj) {
                 let main = document.querySelector('main');
-                let gamesList = jsonObj.games;
+                let gamesList = jsonObj['games'];
 
                 // Создание записи
                 for (let i = 0; i < gamesList.length; i++) {
@@ -105,7 +105,7 @@
                     let descP = document.createElement('p');
 
 
-                    // Придание аттрибутов
+                    // Придание атрибутов
                     titleP.textContent = gamesList[i].title;
                     descP.textContent = gamesList[i].description;
                     gameImage.src = gamesList[i].imageLink;
