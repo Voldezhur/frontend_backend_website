@@ -7,10 +7,6 @@
         <link rel="icon" type="image/x-icon" href="images/icons/moai.png">
     </head>
     <body>
-        <script>
-            let requestURL = "";
-        </script>
-        
         <header>
             <img id="websiteLogo" src="images/tempLogo.svg" alt="Логотип">
             <div class="titleFlex">
@@ -35,7 +31,7 @@
         <h1 class="sectionTitle">Игры на сайте</h1>
         
         <main>
-            <div class="gameItem">
+            <!-- <div class="gameItem">
                 <img class="gameImage" src="images/minesweeper.png">
                 <div class="gameDesc">
                     <p class="gameTitle">Сапер</p>
@@ -62,11 +58,71 @@
                     <p class="gameTitle">Flappy Bird</p>
                     <p>Описание Описание Описание Описание</p>
                 </div>
-            </div>
+            </div> -->
         </main>
 
         <footer>
 
         </footer>
+
+        <script>            
+            let requestURL = "https://github.com/Voldezhur/frontend_backend_website/blob/main/json/games.json";
+            let request = new XMLHttpRequest();
+            
+            request.open('GET', requestURL);
+            request.responseType = 'json';
+            request.send();
+            
+            request.onload = function() {
+                let games = request.response;
+                showGames(games);
+            }
+
+            function showGames(jsonObj) {
+                let main = document.querySelector('main');
+                let gamesList = jsonObj.games;
+
+                // Создание записи
+                for (let i = 0; i < gamesList.length; i++) {
+                    // Создание блоков
+                    // Главный div
+                    let gameDiv = document.createElement('div');
+                    gameDiv.classList.add("gameItem");
+
+                    // Картинка
+                    let gameImage = document.createElement('img');
+                    gameImage.classList.add("gameImage");
+
+                    // div описания
+                    let descDiv = document.createElement('div');
+                    descDiv.classList.add("gameDesc");
+
+                    // Название игры
+                    let titleP = document.createElement('p');
+                    titleP.classList.add("gameTitle");
+
+                    // Описание
+                    let descP = document.createElement('p');
+
+
+                    // Придание аттрибутов
+                    titleP.textContent = gamesList[i].title;
+                    descP.textContent = gamesList[i].description;
+                    gameImage.src = gamesList[i].imageLink;
+
+
+                    // Назначение родителей
+                    gameDiv.appendChild(gameImage);
+                    gameDiv.appendChild(descDiv);
+
+                    descDiv.appendChild(titleP);
+                    descDiv.appendChild(descP);
+
+                    
+                    // Добавление в main
+                    main.appendChild(gameDiv);
+                }
+            }
+        </script>
     </body>
 </html>
