@@ -46,19 +46,43 @@ document.addEventListener('keydown', (event) => {
 
     // Добавление движения в очередь
     if (code == 'ArrowLeft') {
-        player.moveQueue.push([-1, 0]);
+        if (player.moveQueue.slice(-1) && player.moveQueue.slice(-1)[1] != 0) {
+            player.moveQueue.push([-1, 0]);
+        }
+
+        else if (player.xDirection == 0){
+            player.moveQueue.push([-1, 0]);
+        }
     }
 
     if (code == 'ArrowRight') {
-        player.moveQueue.push([1, 0]);
+        if (player.moveQueue.slice(-1) && player.moveQueue.slice(-1)[1] != 0) {
+            player.moveQueue.push([1, 0]);
+        }
+
+        else if (player.xDirection == 0){
+            player.moveQueue.push([1, 0]);
+        }
     }
 
     if (code == 'ArrowUp') {
-        player.moveQueue.push([0, -1]);
+        if (player.moveQueue.slice(-1) && player.moveQueue.slice(-1)[0] != 0) {
+            player.moveQueue.push([0, -1]);
+        }
+
+        else if (player.yDirection == 0){
+            player.moveQueue.push([0, -1]);
+        }
     }
 
     if (code == 'ArrowDown') {
-        player.moveQueue.push([0, 1]);
+        if (player.moveQueue.slice(-1) && player.moveQueue.slice(-1)[0] != 0) {
+            player.moveQueue.push([0, 1]);
+        }
+
+        else if (player.yDirection == 0){
+            player.moveQueue.push([0, 1]);
+        }
     }
 
 }, false);
