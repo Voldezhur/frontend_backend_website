@@ -11,10 +11,12 @@ let gameCanvas = {
     start: function() {
         this.canvas.width = canvasWidth;
         this.canvas.height = canvasHeight;
+        this.canvas.style.backgroundColor = "#646464";
         this.context = this.canvas.getContext("2d");
         document.getElementById("mainSection").appendChild(this.canvas);
     }
 }
+
 
 // create player
 let player;

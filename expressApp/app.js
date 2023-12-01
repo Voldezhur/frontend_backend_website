@@ -22,6 +22,10 @@ app.get("/flappyBird", function(request, response){
     response.sendFile(__dirname + "/public/flappyBird.html");
 });
 
+app.get("/snake", function(request, response){
+    response.sendFile(__dirname + "/public/snake.html");
+});
+
 app.get("/*", function(request, response){
     response.sendFile(__dirname + "/public/404.html", 404);
 });
