@@ -235,3 +235,18 @@ canvas {
     margin-left: auto;
     margin-right: auto;
 }
+
+/********* Другое **********/
+
+.error {
+    text-align: center;
+
+    color: red;
+}
+
+.error-button {
+    display: block;
+
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -14,9 +14,9 @@
                 <p>games</p>
             </div>
             <nav>
-                <a><button>Главная</button></a>
-                <a><button>Список игр</button></a>
-                <a><button>Рекорды</button></a>
+                <a href="/"><button>Главная</button></a>
+                <a href="/games"><button>Список игр</button></a>
+                <a href="/records"><button>Рекорды</button></a>
             </nav>
             <div class="searchFlex">
                 <p>Поиск:</p>
@@ -103,20 +103,29 @@
 
                     // Описание
                     let descP = document.createElement('p');
+                    
+                    // Кнопка "играть"
+                    let playA = document.createElement('a');
+                    let playButton = document.createElement('button');
 
 
                     // Придание атрибутов
                     titleP.textContent = gamesList[i].title;
                     descP.textContent = gamesList[i].description;
+                    playButton.textContent = "Играть";
                     gameImage.src = gamesList[i].imageLink;
+                    playA.href = gamesList[i].gameLink;
 
 
                     // Назначение родителей
                     gameDiv.appendChild(gameImage);
                     gameDiv.appendChild(descDiv);
 
+                    playA.appendChild(playButton);
+
                     descDiv.appendChild(titleP);
                     descDiv.appendChild(descP);
+                    descDiv.appendChild(playA);
 
                     
                     // Добавление в main

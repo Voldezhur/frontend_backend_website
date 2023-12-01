@@ -4,12 +4,12 @@ const express = require("express");
 // создаем объект приложения
 const app = express();
 
-// Чтобы работал css
+// Чтобы подгружались статические файлы
 app.use(express.static(__dirname + '/public'))
 
-// определяем обработчик для маршрута "/"
+
+// Маршруты
 app.get("/", function(request, response){
-    // отправляем ответ
     response.sendFile(__dirname + "/public/home.html");
 });
 
@@ -22,9 +22,9 @@ app.get("/flappyBird", function(request, response){
 });
 
 app.get("/404", function(request, response){
-    response.sendFile(__dirname + "/public/404.html");
+    response.sendFile(__dirname + "/public/404.html", 404);
 });
 
 
 // начинаем прослушивать подключения на 3000 порту
-app.listen(3000);
+app.listen(3000, '127.0.0.1');

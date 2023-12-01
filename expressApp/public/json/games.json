@@ -1,0 +1,27 @@
+{
+    "games":
+    [
+        {
+            "title": "Сапер",
+            "description": "Нужно убрать все мины, не умерев",
+            "imageLink": "images/minesweeper.png",
+            "gameLink": "/minesweeper.html"
+        },
+        {
+            "title": "Flappy Bird",
+            "description": "Нужно пролетать в трубы, не ударяясь о них",
+            "imageLink": "images/flappyBird.jpeg",
+            "gameLink": "/flappyBird.html"
+        },
+        {
+            "title": "Игра Ним",
+            "description": "Каждый игрок за ход может забрать 1, 2 или три камня. Игрок, взявший последний камень, проигрывает",
+            "imageLink": "images/nim.jpg"
+        },
+        {
+            "title": "Змейка",
+            "description": "Нужно управлять змейкой, собирать еду и не врезаться в себя или стены",
+            "imageLink": "images/snake.jpeg"
+        }
+    ]
+}
