@@ -16,12 +16,14 @@
         {
             "title": "Игра Ним",
             "description": "Каждый игрок за ход может забрать 1, 2 или три камня. Игрок, взявший последний камень, проигрывает",
-            "imageLink": "images/nim.jpg"
+            "imageLink": "images/nim.jpg",
+            "gameLink": "/nim.html"
         },
         {
             "title": "Змейка",
             "description": "Нужно управлять змейкой, собирать еду и не врезаться в себя или стены",
-            "imageLink": "images/snake.jpeg"
+            "imageLink": "images/snake.jpeg",
+            "gameLink": "/snake.html"
         }
     ]
 }
