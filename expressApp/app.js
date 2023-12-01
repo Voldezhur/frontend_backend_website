@@ -9,6 +9,7 @@ app.use(express.static(__dirname + '/public'))
 
 
 // Маршруты
+
 app.get("/", function(request, response){
     response.sendFile(__dirname + "/public/home.html");
 });
@@ -21,7 +22,7 @@ app.get("/flappyBird", function(request, response){
     response.sendFile(__dirname + "/public/flappyBird.html");
 });
 
-app.get("/404", function(request, response){
+app.get("/*", function(request, response){
     response.sendFile(__dirname + "/public/404.html", 404);
 });
 

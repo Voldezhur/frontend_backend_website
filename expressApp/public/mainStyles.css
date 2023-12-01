@@ -177,6 +177,10 @@ header nav {
         padding-left: 20px;
         background-color: #212121;
     }
+
+    .gameDesc a {
+        margin-right: auto;
+    }
 }
 
 @media (max-width: 539px) {

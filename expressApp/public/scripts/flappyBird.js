@@ -26,6 +26,11 @@ let interval = setInterval(updateCanvas, 20);
 let isJumping = false;
 let jumpHeight = 1;
 
+let gameBeginText = document.createElement('h1');
+gameBeginText.classList.add('sectionTitle');
+gameBeginText.textContent = "Для начала игры нажмите пробел";
+document.getElementById("mainSection").appendChild(gameBeginText);
+
 // create event listener for keyboard input
 document.addEventListener('keydown', (event) => {
     let code = event.code;
@@ -33,6 +38,7 @@ document.addEventListener('keydown', (event) => {
     if (code == "Space") {
         if (gameRunning == false) {
             gameRunning = true;
+            gameBeginText.remove();
             startGame();
         }
         
