@@ -1,8 +1,20 @@
-// put game settings here
+// --- game settings ---
+
 let tickSpeed = 400;
 
 let playerStartingX = 270;
 let playerStartingY = 150;
+
+let startingSegments = 4;
+
+// ---------------------
+
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 
 // create canvas
@@ -26,6 +38,7 @@ let gameCanvas = {
 
 // create player
 let player;
+let fluit;
 let segments = [];
 
 let speed = 30;
@@ -89,10 +102,9 @@ document.addEventListener('keydown', (event) => {
         }
     }
 
-    if (code == 'KeyC') {
-        segments.push(new createSegment(segments.slice(-1).x, segments.slice(-1).y));
-    }
-
+    // if (code == 'KeyC') {
+    //     segments.push(new createSegment(segments.slice(-1).x, segments.slice(-1).y));
+    // }
 }, false);
 
 // instantiate head
@@ -113,11 +125,28 @@ function createPlayer() {
         ctx.fillRect(this.x, this.y, this.width, this.height);
     }
 
-    this.checkCollisions = function() {
-        if (this.x >= canvasWidth || this.x < 0 || this.y >= canvasHeight || this.y < 0) {
-            this.alive = false;
-        }
-    }
+    // Функция не нужна - все столкновения и так проверяются при движении
+    // this.checkCollisions = function() {
+    //     // Столкновение со стеной
+    //     if (this.x >= canvasWidth || this.x < 0 || this.y >= canvasHeight || this.y < 0) {
+    //         this.alive = false;
+    //     }
+
+    //     // Съедение фрукта
+    //     if (this.x == fruit.x && this.y == fruit.y) {
+    //         fruit.moveFruit();
+    //         segments.push(new createSegment(segments.slice(-1).x, segments.slice(-1).y));
+    //         score++;
+    //     }
+
+    //     // Столкновение с хвостом
+    //     for (let i = 0; i < segments.length; i++) {
+    //         if (this.x == segments[i].x && this.y == segments[i].y) {
+    //             this.alive = false;
+    //             break;
+    //         }
+    //     }
+    // }
 
     this.checkIfDead = function() {
         if (this.alive == false) {
@@ -143,13 +172,33 @@ function createPlayer() {
         let newX = this.x + speed * this.xDirection;
         let newY = this.y + speed * this.yDirection;
         
+        // Флаг на движение - при провале проверок станет false
+        let moveFlag = true;
+        
         // проверка, столкнется ли игрок со стеной при движении
-
         if (newX >= canvasWidth || newX < 0 || newY >= canvasHeight || newY < 0) {
             this.alive = false;
+            moveFlag = false
         }
 
-        else {
+        // проверка, столкнется ли игрок со своим хвостом при движении
+        for (let i = 0; i < segments.length; i++) {
+            if (newX == segments[i].x && newY == segments[i].y) {
+                this.alive = false;
+                moveFlag = false;
+                break;
+            }
+        }
+
+        // Съедение фрукта
+        if (newX == fruit.x && newY == fruit.y) {
+            fruit.moveFruit();
+            segments.push(new createSegment(segments.slice(-1).x, segments.slice(-1).y));
+            score++;
+        }
+
+        // Движение головы и сегментов
+        if (moveFlag) {
             let oldX = this.x;
             let oldY = this.y;
 
@@ -190,6 +239,33 @@ function createSegment(startingX, startingY) {
     }
 }
 
+function createFruit() {
+    this.width = 30;
+    this.height = 30;
+
+    this.x = -1;
+    this.y = -1;
+
+    this.draw = function() {
+        ctx = gameCanvas.context;
+        ctx.fillStyle = "#cf1f9a";
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+
+    this.moveFruit = function() {
+        xCandidate = getRandomInt(0, canvasWidth - 30);
+        yCandidate = getRandomInt(0, canvasHeight - 30);
+
+        while(xCandidate % 30 != 0 || yCandidate % 30 != 0) {
+            xCandidate = getRandomInt(0, canvasWidth - 30);
+            yCandidate = getRandomInt(0, canvasHeight - 30);
+        }
+
+        this.x = xCandidate;
+        this.y = yCandidate;
+    }   
+}
+
 // create score label
 let scoreLabel;
 
@@ -213,7 +289,7 @@ let createScoreLabel = function() {
 
 // function update the canvas
 function updateCanvas() {    
-    player.checkCollisions();
+    // player.checkCollisions();
     player.checkIfDead();
 
     ctx = gameCanvas.context;
@@ -228,6 +304,7 @@ function updateCanvas() {
         }
     }
 
+    fruit.draw();
     scoreLabel.draw();
 }
 
@@ -235,10 +312,14 @@ function updateCanvas() {
 function startGame() {
     gameCanvas.start();
     player = new createPlayer();
+    
     segments.push(new createSegment(playerStartingX - 30, playerStartingY));
     segments.push(new createSegment(playerStartingX - 30, playerStartingY));
     segments.push(new createSegment(playerStartingX - 30, playerStartingY));
     segments.push(new createSegment(playerStartingX - 30, playerStartingY));
+
+    fruit = new createFruit();
+    fruit.moveFruit();
 
     scoreLabel = new createScoreLabel();
 }
