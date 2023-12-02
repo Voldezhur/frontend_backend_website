@@ -1,11 +1,13 @@
 // --- game settings ---
 
-let tickSpeed = 400;
+let tickSpeed = 200;
 
 let playerStartingX = 270;
 let playerStartingY = 150;
 
 let startingSegments = 4;
+
+let doAlert = true;
 
 // ---------------------
 
@@ -150,6 +152,11 @@ function createPlayer() {
 
     this.checkIfDead = function() {
         if (this.alive == false) {
+            if (doAlert) {
+                alert("Вы Проирали!\nФинальные очки: " + score);
+                doAlert = false;
+            }
+            
             gameCanvas.stop();
             gameRunning = false;
         }
