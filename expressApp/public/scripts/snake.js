@@ -1,6 +1,9 @@
 // put game settings here
 let tickSpeed = 400;
 
+let playerStartingX = 270;
+let PlayerStartingY = 150;
+
 
 // create canvas
 let canvasHeight = 420;
@@ -23,6 +26,7 @@ let gameCanvas = {
 
 // create player
 let player;
+let segments = [];
 
 let speed = 30;
 let interval = setInterval(updateCanvas, tickSpeed);
@@ -87,12 +91,12 @@ document.addEventListener('keydown', (event) => {
 
 }, false);
 
-// instantiate player
-function createPlayer(width, height) {
-    this.width = width;
-    this.height = height;
-    this.x = 270;
-    this.y = 150;
+// instantiate head
+function createPlayer() {
+    this.width = 30;
+    this.height = 30;
+    this.x = playerStartingX;
+    this.y = PlayerStartingY;
     this.alive = true;
     this.xDirection = 1;
     this.yDirection = 0;
@@ -142,8 +146,42 @@ function createPlayer(width, height) {
         }
 
         else {
-            this.y += speed * this.yDirection;
-            this.x += speed * this.xDirection;
+            let oldX = this.x;
+            let oldY = this.y;
+
+            this.x = newX;
+            this.y = newY;
+
+            // Движение предыдущего сегмента
+            segments[0].moveSegment(oldX, oldY);
+        }
+    }
+}
+
+// instantiate snake segments
+function createSegment(startingX, startingY) {
+    this.width = 30;
+    this.height = 30;
+    this.x = startingX;
+    this.y = startingY;
+    
+    this.nextIndex = segments.length;
+    
+    this.draw = function() {
+        ctx = gameCanvas.context;
+        ctx.fillStyle = "#016308";
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+
+    this.moveSegment = function(newX, newY) {
+        let oldX = this.x;
+        let oldY = this.y;
+        
+        this.x = newX;
+        this.y = newY;
+
+        if (segments.length > this.nextIndex) {
+            segments[this.nextIndex].moveSegment(oldX, oldY);
         }
     }
 }
@@ -180,6 +218,10 @@ function updateCanvas() {
     if (player.alive) {  // only draw the player, if they are alive;
         player.movePlayer();
         player.draw();
+        
+        for (let i = 0; i < segments.length; i++) {
+            segments[i].draw();
+        }
     }
 
     scoreLabel.draw();
@@ -188,7 +230,9 @@ function updateCanvas() {
 // start game
 function startGame() {
     gameCanvas.start();
-    player = new createPlayer(30, 30);
+    player = new createPlayer();
+    segments.push(new createSegment(0, 0));
+    segments.push(new createSegment(0, 0));
 
     scoreLabel = new createScoreLabel();
 }
