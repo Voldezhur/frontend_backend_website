@@ -127,33 +127,10 @@ function createPlayer() {
         ctx.fillRect(this.x, this.y, this.width, this.height);
     }
 
-    // Функция не нужна - все столкновения и так проверяются при движении
-    // this.checkCollisions = function() {
-    //     // Столкновение со стеной
-    //     if (this.x >= canvasWidth || this.x < 0 || this.y >= canvasHeight || this.y < 0) {
-    //         this.alive = false;
-    //     }
-
-    //     // Съедение фрукта
-    //     if (this.x == fruit.x && this.y == fruit.y) {
-    //         fruit.moveFruit();
-    //         segments.push(new createSegment(segments.slice(-1).x, segments.slice(-1).y));
-    //         score++;
-    //     }
-
-    //     // Столкновение с хвостом
-    //     for (let i = 0; i < segments.length; i++) {
-    //         if (this.x == segments[i].x && this.y == segments[i].y) {
-    //             this.alive = false;
-    //             break;
-    //         }
-    //     }
-    // }
-
     this.checkIfDead = function() {
         if (this.alive == false) {
             if (doAlert) {
-                alert("Вы Проирали!\nФинальные очки: " + score);
+                alert("Вы проирали!\nФинальные очки: " + score);
                 doAlert = false;
             }
             
