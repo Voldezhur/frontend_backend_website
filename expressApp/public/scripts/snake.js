@@ -117,6 +117,13 @@ function createPlayer() {
         if (this.x >= canvasWidth || this.x < 0 || this.y >= canvasHeight || this.y < 0) {
             this.alive = false;
         }
+
+        for (let i = 0; i < segments.length; i++) {
+            if (this.x == segments[i].x && this.y == segments[i].y) {
+                this.alive = false;
+                break;
+            }
+        }
     }
 
     this.checkIfDead = function() {
@@ -144,12 +151,22 @@ function createPlayer() {
         let newY = this.y + speed * this.yDirection;
         
         // проверка, столкнется ли игрок со стеной при движении
-
         if (newX >= canvasWidth || newX < 0 || newY >= canvasHeight || newY < 0) {
             this.alive = false;
         }
 
-        else {
+        let moveFlag = true;
+
+        // проверка, столкнется ли игрок со своим хвостом при движении
+        for (let i = 0; i < segments.length; i++) {
+            if (newX == segments[i].x && newY == segments[i].y) {
+                this.alive = false;
+                moveFlag = false;
+                break;
+            }
+        }
+
+        if (moveFlag) {
             let oldX = this.x;
             let oldY = this.y;
 
