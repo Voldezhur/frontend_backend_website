@@ -5,8 +5,6 @@ let tickSpeed = 200;
 let playerStartingX = 270;
 let playerStartingY = 150;
 
-let startingSegments = 4;
-
 let doAlert = true;
 
 // ---------------------
@@ -64,7 +62,7 @@ document.addEventListener('keydown', (event) => {
     }
 
     // Добавление движения в очередь
-    if (code == 'ArrowLeft') {
+    if (code == 'ArrowLeft' || code == 'KeyA') {
         if (player.moveQueue.slice(-1) && player.moveQueue.slice(-1)[1] != 0) {
             player.moveQueue.push([-1, 0]);
         }
@@ -74,7 +72,7 @@ document.addEventListener('keydown', (event) => {
         }
     }
 
-    if (code == 'ArrowRight') {
+    if (code == 'ArrowRight' || code == 'KeyD') {
         if (player.moveQueue.slice(-1) && player.moveQueue.slice(-1)[1] != 0) {
             player.moveQueue.push([1, 0]);
         }
@@ -84,7 +82,7 @@ document.addEventListener('keydown', (event) => {
         }
     }
 
-    if (code == 'ArrowUp') {
+    if (code == 'ArrowUp' || code == 'KeyW') {
         if (player.moveQueue.slice(-1) && player.moveQueue.slice(-1)[0] != 0) {
             player.moveQueue.push([0, -1]);
         }
@@ -94,7 +92,7 @@ document.addEventListener('keydown', (event) => {
         }
     }
 
-    if (code == 'ArrowDown') {
+    if (code == 'ArrowDown' || code == 'KeyS') {
         if (player.moveQueue.slice(-1) && player.moveQueue.slice(-1)[0] != 0) {
             player.moveQueue.push([0, 1]);
         }
@@ -297,8 +295,6 @@ function startGame() {
     gameCanvas.start();
     player = new createPlayer();
     
-    segments.push(new createSegment(playerStartingX - 30, playerStartingY));
-    segments.push(new createSegment(playerStartingX - 30, playerStartingY));
     segments.push(new createSegment(playerStartingX - 30, playerStartingY));
     segments.push(new createSegment(playerStartingX - 30, playerStartingY));
 
