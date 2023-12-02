@@ -132,8 +132,19 @@ function createPlayer(width, height) {
             this.moveQueue.shift();
         }
         
-        this.y += speed * this.yDirection;
-        this.x += speed * this.xDirection;
+        let newX = this.x + speed * this.xDirection;
+        let newY = this.y + speed * this.yDirection;
+        
+        // проверка, столкнется ли игрок со стеной при движении
+
+        if (newX >= canvasWidth || newX < 0 || newY >= canvasHeight || newY < 0) {
+            this.alive = false;
+        }
+
+        else {
+            this.y += speed * this.yDirection;
+            this.x += speed * this.xDirection;
+        }
     }
 }
 
