@@ -9,7 +9,7 @@
         },
         {
             "title": "Flappy Bird",
-            "description": "Нужно пролетать в трубы, не ударяясь о них",
+            "description": "Нужно пролетать в трубы, не ударяясь о них или о землю",
             "imageLink": "images/flappyBird.jpeg",
             "gameLink": "/flappyBird.html"
         },
@@ -21,7 +21,7 @@
         },
         {
             "title": "Змейка",
-            "description": "Нужно управлять змейкой, собирать еду и не врезаться в себя или стены",
+            "description": "Нужно управлять змейкой, собирать фрукты и не врезаться в себя или стены",
             "imageLink": "images/snake.jpeg",
             "gameLink": "/snake.html"
         }
