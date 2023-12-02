@@ -130,7 +130,7 @@ function createPlayer() {
     this.checkIfDead = function() {
         if (this.alive == false) {
             if (doAlert) {
-                alert("Вы проирали!\nФинальные очки: " + score);
+                alert("Вы проирали!\nФинальные очки: " + score + "\nФинальная длина: " + (segments.length + 1));
                 doAlert = false;
             }
             
@@ -232,7 +232,7 @@ function createFruit() {
 
     this.draw = function() {
         ctx = gameCanvas.context;
-        ctx.fillStyle = "#cf1f9a";
+        ctx.fillStyle = "#f7052d";
         ctx.fillRect(this.x, this.y, this.width, this.height);
     }
 
