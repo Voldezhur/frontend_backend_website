@@ -89,6 +89,10 @@ document.addEventListener('keydown', (event) => {
         }
     }
 
+    if (code == 'KeyC') {
+        segments.push(new createSegment(segments.slice(-1).x, segments.slice(-1).y));
+    }
+
 }, false);
 
 // instantiate head
