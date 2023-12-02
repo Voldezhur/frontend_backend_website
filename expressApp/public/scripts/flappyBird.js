@@ -1,3 +1,5 @@
+let doAlert = true;
+
 // create canvas
 let canvasHeight = 400;
 let canvasWidth = 600;
@@ -66,6 +68,11 @@ function createPlayer(width, height, x) {
 
     this.checkIfDead = function() {
         if (this.alive == false) {
+            if (doAlert) {
+                alert("Вы проирали!\nФинальные очки: " + score);
+                doAlert = false;
+            }
+            
             gameCanvas.stop();
             gameRunning = false;
         }
