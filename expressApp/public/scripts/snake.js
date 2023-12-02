@@ -2,7 +2,7 @@
 let tickSpeed = 400;
 
 let playerStartingX = 270;
-let PlayerStartingY = 150;
+let playerStartingY = 150;
 
 
 // create canvas
@@ -96,7 +96,7 @@ function createPlayer() {
     this.width = 30;
     this.height = 30;
     this.x = playerStartingX;
-    this.y = PlayerStartingY;
+    this.y = playerStartingY;
     this.alive = true;
     this.xDirection = 1;
     this.yDirection = 0;
@@ -165,7 +165,7 @@ function createSegment(startingX, startingY) {
     this.x = startingX;
     this.y = startingY;
     
-    this.nextIndex = segments.length;
+    this.nextIndex = Object.keys(segments).length + 1;
     
     this.draw = function() {
         ctx = gameCanvas.context;
@@ -231,8 +231,10 @@ function updateCanvas() {
 function startGame() {
     gameCanvas.start();
     player = new createPlayer();
-    segments.push(new createSegment(0, 0));
-    segments.push(new createSegment(0, 0));
+    segments.push(new createSegment(playerStartingX - 30, playerStartingY));
+    segments.push(new createSegment(playerStartingX - 30, playerStartingY));
+    segments.push(new createSegment(playerStartingX - 30, playerStartingY));
+    segments.push(new createSegment(playerStartingX - 30, playerStartingY));
 
     scoreLabel = new createScoreLabel();
 }
